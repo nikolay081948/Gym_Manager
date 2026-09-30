@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Gym_Manager.ViewModels.Trainer.TrainerIndexViewModel>
+
+@{
+    ViewData["Title"] = "Trainers";
+}
+
+<h1>Trainers</h1>
+
+<p>
+    <a asp-action="Create">Create New Trainer</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specialty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GymName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var trainer in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => trainer.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => trainer.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => trainer.Specialty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => trainer.GymName)
+                </td>
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@trainer.Id">
+                        Edit
+                    </a>
+                    |
+                    <a asp-action="Details"
+                       asp-route-id="@trainer.Id">
+                        Details
+                    </a>
+                    |
+                    <a asp-action="Delete"
+                       asp-route-id="@trainer.Id">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

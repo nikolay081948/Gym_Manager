@@ -1,0 +1,52 @@
+﻿@model Gym_Manager.ViewModels.Gym.GymCreateViewModel
+
+<h1>Добавяне на зала</h1>
+
+<form asp-action="Create" method="post">
+
+    <label>Име на залата:</label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+
+    <br />
+    <br />
+
+    <label>Адрес:</label>
+    <input asp-for="Address" />
+    <span asp-validation-for="Address"></span>
+
+    <br />
+    <br />
+
+    <label>Email:</label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+    <br />
+    <br />
+
+    <label>Телефон:</label>
+    <input asp-for="PhoneNumber" />
+    <span asp-validation-for="PhoneNumber"></span>
+   
+    <br />
+    <br />
+
+    <label>Капацитет (членове):</label>
+    <input asp-for="MembersCapacity" />
+    <span asp-validation-for="MembersCapacity"></span>
+
+    <br />
+    <br />
+
+    <button type="submit">Запази</button>
+   
+</form>
+<a asp-action="Index">Назад към списъка</a>
+   
+
+    
+
+<br />
+
+<a href="/Gym/Index">Покажи всички зали</a>

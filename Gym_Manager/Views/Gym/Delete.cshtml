@@ -1,0 +1,36 @@
+﻿@model Gym_Manager.ViewModels.Gym.GymDeleteViewModel
+
+<h1>Изтриване на зала</h1>
+
+<h3>Сигурни ли сте, че искате да изтриете тази зала?</h3>
+
+<div>
+
+    <hr />
+
+    <dl>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        
+
+    </dl>
+
+    <form asp-action="Delete" method="post">
+
+        <input asp-for="Id" type="hidden" />
+
+        <input type="submit" value="Delete" />
+
+        |
+
+        <a asp-action="Index">Back to List</a>
+
+    </form>
+
+</div>
