@@ -63,6 +63,21 @@ namespace Data_Gym_Manager.Migrations
                     b.ToTable("Trainers");
                 });
 
+            modelBuilder.Entity("Data_Gym_Manager.Entities.TrainerMember", b =>
+                {
+                    b.Property<int>("TrainerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TrainerId", "MemberId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("TrainerMembers");
+                });
+
             modelBuilder.Entity("Data_Gym_Manager.Entities.Gym", b =>
                 {
                     b.Property<int>("Id")
@@ -102,6 +117,37 @@ namespace Data_Gym_Manager.Migrations
                     b.ToTable("Gyms");
                 });
 
+            modelBuilder.Entity("Data_Gym_Manager.Entities.Member", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Members");
+                });
+
             modelBuilder.Entity("Data_Gym_Manager.Entities.Trainer", b =>
                 {
                     b.HasOne("Data_Gym_Manager.Entities.Gym", "Gym")
@@ -113,9 +159,38 @@ namespace Data_Gym_Manager.Migrations
                     b.Navigation("Gym");
                 });
 
+            modelBuilder.Entity("Data_Gym_Manager.Entities.TrainerMember", b =>
+                {
+                    b.HasOne("Data_Gym_Manager.Entities.Trainer", "Trainer")
+                        .WithMany("TrainerMembers")
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data_Gym_Manager.Entities.Member", "Member")
+                        .WithMany("TrainerMembers")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Trainer");
+
+                    b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("Data_Gym_Manager.Entities.Trainer", b =>
+                {
+                    b.Navigation("TrainerMembers");
+                });
+
             modelBuilder.Entity("Data_Gym_Manager.Entities.Gym", b =>
                 {
                     b.Navigation("Trainers");
+                });
+
+            modelBuilder.Entity("Data_Gym_Manager.Entities.Member", b =>
+                {
+                    b.Navigation("TrainerMembers");
                 });
 #pragma warning restore 612, 618
         }

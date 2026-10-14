@@ -36,5 +36,7 @@ namespace Data_Gym_Manager.Entities
         public int GymId { get; set; } 
 
         public Gym Gym { get; set; }
+        public List<TrainerMember> TrainerMembers { get; set; }=new List<TrainerMember>();
+
     }
 }
